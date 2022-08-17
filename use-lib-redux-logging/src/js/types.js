@@ -1,0 +1,5 @@
+export const COUNTER_PLUS = 'COUNTER_PLUS';
+export const COUNTER_MINUS = 'COUNTER_MINUS';
+export const COUNTER_RESET = 'COUNTER_RESET';
+
+export const THEME_CHANGE = 'THEME_CHANGE';

@@ -1,0 +1,47 @@
+{
+    "name": "learn-redux",
+    "version": "1.0.0",
+    "description": "Изучение Redux",
+    "private": true,
+    "scripts": {
+        "start": "webpack serve --open",
+        "watch": "webpack watch",
+        "build": "webpack build",
+        "build:prod": "webpack --node-env production"
+    },
+    "keywords": [
+        "redux",
+        "javascript"
+    ],
+    "author": "Evgeniy Tokmakov",
+    "devDependencies": {
+        "@babel/core": "^7.18.10",
+        "@babel/preset-env": "^7.18.10",
+        "babel-loader": "^8.2.5",
+        "css-loader": "^6.7.1",
+        "eslint": "^8.21.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-config-standard": "^17.0.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-n": "^15.2.4",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-promise": "^6.0.0",
+        "html-webpack-plugin": "^5.5.0",
+        "mini-css-extract-plugin": "^2.6.1",
+        "postcss-loader": "^7.0.1",
+        "postcss-preset-env": "^7.7.2",
+        "prettier": "^2.7.1",
+        "sass": "^1.54.4",
+        "sass-loader": "^13.0.2",
+        "style-loader": "^3.3.1",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0",
+        "webpack-dev-server": "^4.10.0"
+    },
+    "dependencies": {
+        "bootstrap": "^5.2.0",
+        "redux": "^4.2.0",
+        "redux-logger": "^3.0.6",
+        "redux-thunk": "^2.4.1"
+    }
+}
