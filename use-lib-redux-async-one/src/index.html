@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+    <div class="container pt-5">
+        <h1 class="heading"><%= htmlWebpackPlugin.options.title %></h1>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Пользователи</h5>
+                <button class="btn btn-primary mb-4" id="load">Загрузить</button>
+                <div id="loading" style="display:none;">
+                    <div class="spinner-border text-danger" role="status">
+                        <span class="visually-hidden">Загрузка...</span>
+                    </div>
+                </div>
+                <div id="error" style="display:none;">
+                    <div class="alert alert-danger" role="alert">Что-то пошло не так...</div>
+                </div>
+                <div id="users" class="mt-2"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

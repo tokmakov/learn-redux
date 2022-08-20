@@ -3,13 +3,11 @@ import '../css/style.css';
 
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-import thunk from 'redux-thunk';
-// import { thunk } from './thunk.js';
 import { rootReducer } from './rootReducer.js';
 import { fetchUsersProcess } from './actions.js';
 
 // Создание и инициализация хранилища
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 // Подписываемся на событие изменения
 store.subscribe(() => {
@@ -44,11 +42,5 @@ function renderUsers({ users, loading, error }) {
 
 // Обработчик клика по кнопке
 document.getElementById('load').addEventListener('click', () => {
-    /*
-     * Вызов fetchUsersProcess возвращает не объект экшена, а функцию — и тогда в работу вступает
-     * thunk. Middleware вызывает эту функцию, передавая ей store.dispatch и store.getState — так
-     * что мы при написании этой функции можем в нужный момент вызвать action FETCH_USERS_STARTED,
-     * FETCH_USERS_SUCCESS (при получении списка пользователей с сервера) или FETCH_USERS_FAILURE.
-     */
-    store.dispatch(fetchUsersProcess());
+    store.dispatch(fetchUsersProcess(store.dispatch));
 });

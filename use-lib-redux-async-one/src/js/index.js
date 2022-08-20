@@ -1,15 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/style.css';
 
-import { createStore, applyMiddleware } from 'redux';
-import logger from 'redux-logger';
-import thunk from 'redux-thunk';
-// import { thunk } from './thunk.js';
+import { createStore } from 'redux';
 import { rootReducer } from './rootReducer.js';
-import { fetchUsersProcess } from './actions.js';
+import { fetchUsersStarted, fetchUsersSuccess, fetchUsersFailure } from './actions.js';
 
 // Создание и инициализация хранилища
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+const store = createStore(rootReducer);
 
 // Подписываемся на событие изменения
 store.subscribe(() => {
@@ -44,11 +41,19 @@ function renderUsers({ users, loading, error }) {
 
 // Обработчик клика по кнопке
 document.getElementById('load').addEventListener('click', () => {
-    /*
-     * Вызов fetchUsersProcess возвращает не объект экшена, а функцию — и тогда в работу вступает
-     * thunk. Middleware вызывает эту функцию, передавая ей store.dispatch и store.getState — так
-     * что мы при написании этой функции можем в нужный момент вызвать action FETCH_USERS_STARTED,
-     * FETCH_USERS_SUCCESS (при получении списка пользователей с сервера) или FETCH_USERS_FAILURE.
-     */
-    store.dispatch(fetchUsersProcess());
+    store.dispatch(fetchUsersStarted());
+    // setTimeout только для наглядности, чтобы увеличить задержку
+    setTimeout(() => {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(jsonData => {
+                const users = jsonData.map(user => {
+                    return { id: user.id, name: user.name, email: user.email };
+                });
+                store.dispatch(fetchUsersSuccess(users));
+            })
+            .catch(error => {
+                store.dispatch(fetchUsersFailure(error.message));
+            });
+    }, 1000);
 });
