@@ -27,6 +27,6 @@ export const rootReducer = (state = initState, action) => {
                 error: action.payload,
             };
         default:
-            return { ...state };
+            return state;
     }
 };

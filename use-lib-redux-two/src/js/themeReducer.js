@@ -11,6 +11,6 @@ export function themeReducer(state = initThemeState, action) {
             newState.value = action.value;
             return newState;
         default:
-            return newState;
+            return state;
     }
 }

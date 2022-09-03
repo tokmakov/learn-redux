@@ -17,6 +17,6 @@ export function counterReducer(state = initCounterState, action) {
             newState.count = 0;
             return newState;
         default:
-            return newState;
+            return state;
     }
 }

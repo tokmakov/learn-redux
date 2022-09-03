@@ -13,6 +13,6 @@ export function rootReducer(state, action) {
             newState.count = 0;
             return newState;
         default:
-            return newState;
+            return state;
     }
 }
